@@ -14,10 +14,6 @@
         <tr v-for="hospital in ambo" :key="hospital.name">
           <td>{{ hospital.name }}</td>
           <td>
-            <!-- <div
-              class="ripple-dot"
-              :style="{ backgroundColor: hospital.status }"
-            ></div> -->
             <RippleDot :color="hospital.status" />
           </td>
           <td>{{ hospital.capacity }}</td>
