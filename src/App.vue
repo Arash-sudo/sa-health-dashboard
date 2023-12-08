@@ -1,10 +1,20 @@
 <template>
-  <div>this is the main page</div>
-  <Ambulance :ambo="dashboardData.ambo" />
-  <div class="update-time">Refreshed at: {{ currentTime }}</div>
+  <div id="page-wrapper">
+    <div id="dashboards-container">
+      <DashboardWrapper>
+        <div style="display: inline-flex">
+          <Emergency :data="dashboardData.ed" />
+          <Ambulance :data="dashboardData.ambo" />
+        </div>
+      </DashboardWrapper>
+    </div>
+    <div class="update-time">Refreshed at: {{ currentTime }}</div>
+  </div>
 </template>
 
 <script setup>
+import Emergency from "./components/Emergency.vue";
+import DashboardWrapper from "./components/DashboardWrapper.vue";
 import Ambulance from "./components/Ambulance.vue";
 import { getCurrentTimeStr } from "./utils/getCurrentTimeStr";
 import { ref, onMounted, onBeforeUnmount } from "vue";
@@ -44,5 +54,15 @@ onBeforeUnmount(() => clearInterval(intervalId));
 .update-time {
   position: absolute;
   right: 20;
+}
+
+#dashboards-container {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+#page-wrapper {
+  text-align: center;
+  background-color: #888;
 }
 </style>

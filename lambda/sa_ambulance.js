@@ -14,7 +14,7 @@ export const handler = async (event) => {
   let responseData = {};
 
   const DATA_URL = {
-    ambo: "https://www.sahealth.sa.gov.au/wps/themes/html/Portal/js/OBI_DATA/json/MHS001.json",
+    ambo: "https://www.sahealth.sa.gov.au/wps/themes/html/Portal/js/OBI_DATA/json/MHS005.json",
     ed: "https://www.sahealth.sa.gov.au/wps/themes/html/Portal/js/OBI_DATA/json/ED001.json",
   };
   try {
@@ -22,13 +22,17 @@ export const handler = async (event) => {
       fetch(DATA_URL.ambo),
       fetch(DATA_URL.ed),
     ]);
-
     const data = await Promise.all(
       responses.map((response) => response.json())
     );
 
     responseData.ambo = data[0]
-      .filter((item) => item.HOSP_SHORT)
+      .filter((item) => {
+        if (!item.HOSP_SHORT) return false;
+        if (item.HOSP_SHORT === "RGH") return false;
+        return true;
+      })
+      .sort((a, b) => a.HOSP_SHORT.localeCompare(b.HOSP_SHORT))
       .map(formatAmbulanceData);
 
     responseData.ed = data[1]
@@ -74,30 +78,26 @@ const HOSPITAL_NAMES = {
 
 function formatAmbulanceData(data) {
   const formatted = {
-    updated: data.DTM1,
     name: HOSPITAL_NAMES[data.HOSP_SHORT],
-    capacity: data.CAP,
-    patients: data.TOT,
-    waiting: data.WTBS,
-    treated: data.BT,
-    resuscitation: data.RESUS,
-    status: capacityToStatus(Number(data.TOT) / Number(data.CAP)),
+    number: data.CLR,
+    time: data.ACT,
+    plus30: data.Plus30Min,
   };
   return formatted;
 }
 
 function formatEmergencyData(data) {
+  const totalPatients = Number(data.WTBS) + Number(data.COM_TREAT);
   const formatted = {
     updated: data.DTM,
     name: HOSPITAL_NAMES[data.HOSP_SHORT],
     expecting: data.EA,
+    patients: totalPatients,
     waiting: data.WTBS,
     treated: data.COM_TREAT,
     capacity: data.CAP,
     waitTime: data.AVG_WAIT,
-    status: capacityToStatus(
-      (Number(data.WTBS) + Number(data.COM_TREAT)) / Number(data.CAP)
-    ),
+    status: capacityToStatus(totalPatients / Number(data.CAP)),
   };
   return formatted;
 }

@@ -1,9 +1,9 @@
 <template>
-  <DashboardWrapper>
+  <div id="wrapper">
     <div class="table-title">
-      <TableTitle> Ambulance Service </TableTitle>
+      <TableTitle> Ambulance cleared in the last 3 hours </TableTitle>
     </div>
-    <table class="table">
+    <table class="table dashboard-table">
       <thead>
         <tr>
           <th v-for="header in TABLE_HEADERS" :key="header">{{ header }}</th>
@@ -11,42 +11,28 @@
       </thead>
 
       <tbody class="table-body">
-        <tr v-for="hospital in ambo" :key="hospital.name">
-          <td>{{ hospital.name }}</td>
-          <td>
-            <RippleDot :color="hospital.status" />
-          </td>
-          <td>{{ hospital.capacity }}</td>
-          <td>{{ hospital.patients }}</td>
-          <td>{{ hospital.waiting }}</td>
-          <td>{{ hospital.treated }}</td>
-          <td>{{ hospital.resuscitation }}</td>
+        <tr v-for="hospital in data" :key="hospital.name">
+          <td>{{ hospital.number }}</td>
+          <td>{{ hospital.time }}</td>
+          <td>{{ hospital.plus30 }}</td>
         </tr>
       </tbody>
     </table>
-  </DashboardWrapper>
+  </div>
 </template>
 
 <script setup>
-import DashboardWrapper from "./DashboardWrapper.vue";
 import TableTitle from "./TableTitle.vue";
-import RippleDot from "./RippleDot.vue";
-const TABLE_HEADERS = [
-  "name",
-  "status",
-  "capacity",
-  "patients",
-  "waiting",
-  "treated",
-  "resus",
-];
+const TABLE_HEADERS = ["number", "Minutes to clear", ">30 Min"];
 
-const currentTime = new Date();
-const props = defineProps(["ambo"]);
+const props = defineProps(["data"]);
 </script>
 
 <style scoped>
 td:nth-child(1) {
   font-size: 0.9rem;
+}
+#wrapper {
+  display: inline;
 }
 </style>

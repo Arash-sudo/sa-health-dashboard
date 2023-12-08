@@ -11,5 +11,8 @@
   border-radius: 20px;
   border: 1px solid gray;
   margin: 5px;
+  width: auto;
+  /* display: inline-flex; */
+  margin: auto;
 }
 </style>

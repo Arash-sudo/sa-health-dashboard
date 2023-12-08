@@ -3,3 +3,9 @@
 th {
   text-transform: capitalize;
 }
+
+/* add specificity to override bootstrap default */
+table.table.dashboard-table td,
+table.table.dashboard-table th {
+  background-color: beige;
+}
