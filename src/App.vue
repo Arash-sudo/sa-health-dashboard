@@ -4,19 +4,20 @@
       <img src="../src/assets/images/healux4.png" alt="logo" width="150" />
       <span id="page-title">Integration Dashboard</span>
     </div>
-    <div id="dashboards-container">
+    <div class="dashboards-container">
       <Emergency :data="dashboardData.ed" />
       <Ambulance :data="dashboardData.ambo" />
+      <InpatientMetro :data="dashboardData.ip.metro" />
+      <InpatientMetro :data="dashboardData.ip.metro" />
     </div>
-    <!-- <StrenghBar value="300" range="30" max-bars="4" /> -->
     <div class="update-time">Refreshed at: {{ currentTime }}</div>
   </div>
 </template>
 
 <script setup>
 import Emergency from "./components/Emergency.vue";
-import DashboardWrapper from "./components/DashboardWrapper.vue";
 import Ambulance from "./components/Ambulance.vue";
+import InpatientMetro from "./components/InpatientMetro.vue";
 import { getCurrentTimeStr } from "./utils/getCurrentTimeStr";
 import { ref, onMounted, onBeforeUnmount } from "vue";
 import StrenghBar from "./components/StrenghBar.vue";
@@ -57,15 +58,23 @@ onBeforeUnmount(() => clearInterval(intervalId));
   color: seashell;
 }
 
-#dashboards-container {
+.dashboards-container {
   display: inline-flex;
   gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: auto;
 }
 
 #page-wrapper {
   text-align: center;
   background-color: #888;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 #page-title {
