@@ -4,12 +4,13 @@
       <img src="../src/assets/images/healux4.png" alt="logo" width="150" />
       <span id="page-title">Integration Dashboard</span>
     </div>
-    <div class="dashboards-container">
+    <div class="dashboards-container grid-container">
       <Emergency :data="dashboardData.ed" />
       <Ambulance :data="dashboardData.ambo" />
       <InpatientMetro :data="dashboardData.ip.metro" />
       <InpatientMetro :data="dashboardData.ip.metro" />
     </div>
+
     <div class="update-time">Refreshed at: {{ currentTime }}</div>
   </div>
 </template>

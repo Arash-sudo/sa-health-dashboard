@@ -17,8 +17,8 @@
             <td>{{ hospital.number }}</td>
             <td>
               <div style="display: flex; justify-content: center">
-                {{ hospital.time }}
-                <!-- <StrenghBar :value="hospital.time" range="100" max-bars="10" /> -->
+                <span>{{ hospital.time }}</span>
+                <StrenghBar :value="hospital.time" range="60" />
               </div>
             </td>
             <td>{{ hospital.plus30 }}</td>
