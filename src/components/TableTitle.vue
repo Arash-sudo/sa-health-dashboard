@@ -1,14 +1,20 @@
 <template>
-  <div class="table-title">
+  <div class="table-title" :style="{ backgroundColor: color }">
     <slot></slot>
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+const props = defineProps({
+  color: {
+    type: String,
+    default: "darkgreen",
+  },
+});
+</script>
 
 <style scoped>
 .table-title {
-  background-color: darkgreen;
   color: white;
   margin: 8px;
   border-radius: 8px;

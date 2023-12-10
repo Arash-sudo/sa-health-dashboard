@@ -1,13 +1,14 @@
 <template>
   <div id="page-wrapper">
-    <div id="dashboards-container">
-      <DashboardWrapper>
-        <div style="display: inline-flex">
-          <Emergency :data="dashboardData.ed" />
-          <Ambulance :data="dashboardData.ambo" />
-        </div>
-      </DashboardWrapper>
+    <div id="page-header">
+      <img src="../src/assets/images/healux4.png" alt="logo" width="150" />
+      <span id="page-title">Integration Dashboard</span>
     </div>
+    <div id="dashboards-container">
+      <Emergency :data="dashboardData.ed" />
+      <Ambulance :data="dashboardData.ambo" />
+    </div>
+    <!-- <StrenghBar value="300" range="30" max-bars="4" /> -->
     <div class="update-time">Refreshed at: {{ currentTime }}</div>
   </div>
 </template>
@@ -18,6 +19,7 @@ import DashboardWrapper from "./components/DashboardWrapper.vue";
 import Ambulance from "./components/Ambulance.vue";
 import { getCurrentTimeStr } from "./utils/getCurrentTimeStr";
 import { ref, onMounted, onBeforeUnmount } from "vue";
+import StrenghBar from "./components/StrenghBar.vue";
 
 const DATA_URL =
   "https://3hosqj1dol.execute-api.ap-southeast-2.amazonaws.com/default/ambulance";
@@ -52,17 +54,29 @@ onBeforeUnmount(() => clearInterval(intervalId));
 
 <style scoped>
 .update-time {
-  position: absolute;
-  right: 20;
+  color: seashell;
 }
 
 #dashboards-container {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: inline-flex;
+  gap: 20px;
 }
 
 #page-wrapper {
   text-align: center;
   background-color: #888;
+  height: 100vh;
+}
+
+#page-title {
+  color: rgb(229, 227, 227);
+  font-size: 3rem;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+#page-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-block: 10px;
 }
 </style>

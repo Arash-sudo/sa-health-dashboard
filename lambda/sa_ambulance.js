@@ -11,21 +11,24 @@ export const handler = async (event) => {
     "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
   };
 
-  let responseData = {};
+  let responseData = { ip: {} };
 
   const DATA_URL = {
     ambo: "https://www.sahealth.sa.gov.au/wps/themes/html/Portal/js/OBI_DATA/json/MHS005.json",
     ed: "https://www.sahealth.sa.gov.au/wps/themes/html/Portal/js/OBI_DATA/json/ED001.json",
+    ip: "https://www.sahealth.sa.gov.au/wps/themes/html/Portal/js/OBI_DATA/json/IP2_001.json",
   };
   try {
     const responses = await Promise.all([
       fetch(DATA_URL.ambo),
       fetch(DATA_URL.ed),
+      fetch(DATA_URL.ip),
     ]);
     const data = await Promise.all(
       responses.map((response) => response.json())
     );
 
+    // process ambulance data
     responseData.ambo = data[0]
       .filter((item) => {
         if (!item.HOSP_SHORT) return false;
@@ -35,14 +38,22 @@ export const handler = async (event) => {
       .sort((a, b) => a.HOSP_SHORT.localeCompare(b.HOSP_SHORT))
       .map(formatAmbulanceData);
 
+    // process emergency department data
     responseData.ed = data[1]
       .filter((item) => item.HOSP_SHORT)
       .map(formatEmergencyData);
+
+    // split the inpatient data into two groups, metro and country
+    responseData.ip.metro = data[2]
+      .filter((item) => item.HOSP_TYPE === "METRO")
+      .map(formatIpData);
+
+    responseData.ip.country = data[2]
+      .filter((item) => item.HOSP_TYPE === "COUNTRY")
+      .map(formatIpData);
   } catch (error) {
     responseData = error;
   }
-
-  console.log(responseData);
 
   return {
     statusCode: 200,
@@ -74,11 +85,12 @@ const HOSPITAL_NAMES = {
   RAH: "Royal Adelaide Hospital",
   TQEH: "The Queen Elizabeth Hospital",
   WCH: "Women's & Children's Hospital",
+  WCHP: "Women's & Children's Hospital",
 };
 
 function formatAmbulanceData(data) {
   const formatted = {
-    name: HOSPITAL_NAMES[data.HOSP_SHORT],
+    name: HOSPITAL_NAMES[data.HOSP_SHORT] || data.HOSP_SHORT,
     number: data.CLR,
     time: data.ACT,
     plus30: data.Plus30Min,
@@ -90,7 +102,7 @@ function formatEmergencyData(data) {
   const totalPatients = Number(data.WTBS) + Number(data.COM_TREAT);
   const formatted = {
     updated: data.DTM,
-    name: HOSPITAL_NAMES[data.HOSP_SHORT],
+    name: HOSPITAL_NAMES[data.HOSP_SHORT] || data.HOSP_SHORT,
     expecting: data.EA,
     patients: totalPatients,
     waiting: data.WTBS,
@@ -100,4 +112,20 @@ function formatEmergencyData(data) {
     status: capacityToStatus(totalPatients / Number(data.CAP)),
   };
   return formatted;
+}
+
+function formatIpData(data) {
+  return {
+    name: data.HOSP_LONG.replace("\r", ""),
+    generalWard: {
+      waiting: data.WFB_GEN,
+      admitted: data.OCC_GEN,
+      capacity: data.BASE,
+    },
+    hospitalStats: {
+      waiting: data.WFB_ALL,
+      admitted: data.OCC_ALL,
+      capacity: data.CAP,
+    },
+  };
 }

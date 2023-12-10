@@ -9,10 +9,8 @@
 <style scoped>
 .wrapper {
   border-radius: 20px;
-  border: 1px solid gray;
+  border: 1px solid rgb(251, 252, 251);
   margin: 5px;
-  width: auto;
-  /* display: inline-flex; */
-  margin: auto;
+  padding: 5px;
 }
 </style>
