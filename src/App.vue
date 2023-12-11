@@ -1,17 +1,14 @@
 <template>
   <div id="page-wrapper">
-    <div id="page-header">
-      <img src="../src/assets/images/healux4.png" alt="logo" width="150" />
-      <span id="page-title">Integration Dashboard</span>
-    </div>
+    <PageHeader />
+    <div class="update-time">Refreshed at: {{ currentTime }}</div>
+
     <div class="dashboards-container grid-container">
       <Emergency :data="dashboardData.ed" />
       <Ambulance :data="dashboardData.ambo" />
-      <InpatientMetro :data="dashboardData.ip.metro" />
-      <InpatientMetro :data="dashboardData.ip.metro" />
+      <InpatientMetro :data="slicedMetroInpatient" />
+      <InpatientCountry :data="dashboardData.ip.country" />
     </div>
-
-    <div class="update-time">Refreshed at: {{ currentTime }}</div>
   </div>
 </template>
 
@@ -20,8 +17,9 @@ import Emergency from "./components/Emergency.vue";
 import Ambulance from "./components/Ambulance.vue";
 import InpatientMetro from "./components/InpatientMetro.vue";
 import { getCurrentTimeStr } from "./utils/getCurrentTimeStr";
-import { ref, onMounted, onBeforeUnmount } from "vue";
-import StrenghBar from "./components/StrenghBar.vue";
+import { ref, onMounted, onBeforeUnmount, computed } from "vue";
+import InpatientCountry from "./components/InpatientCountry.vue";
+import PageHeader from "./components/PageHeader.vue";
 
 const DATA_URL =
   "https://3hosqj1dol.execute-api.ap-southeast-2.amazonaws.com/default/ambulance";
@@ -31,7 +29,10 @@ const currentTime = ref(getCurrentTimeStr());
 const dashboardData = ref({
   ambo: [],
   ed: [],
-  ip: [],
+  ip: {
+    metro: [],
+    country: [],
+  },
   es: [],
 });
 
@@ -51,12 +52,22 @@ onMounted(() => {
   intervalId = setInterval(getData, REFRESH_INTERVAL);
 });
 
+const slicedMetroInpatient = computed(
+  () => dashboardData.value.ip.metro.slice(0)
+  // use the slice method to make it possible for a shorter list
+);
+
+console.log(slicedMetroInpatient);
+
 onBeforeUnmount(() => clearInterval(intervalId));
 </script>
 
 <style scoped>
 .update-time {
   color: seashell;
+  position: absolute;
+  top: 4.7rem;
+  left: calc(50% - 7rem);
 }
 
 .dashboards-container {
@@ -76,17 +87,5 @@ onBeforeUnmount(() => clearInterval(intervalId));
   text-align: center;
   background-color: #888;
   /* height: 100vh; */
-}
-
-#page-title {
-  color: rgb(229, 227, 227);
-  font-size: 3rem;
-  font-family: Georgia, "Times New Roman", Times, serif;
-}
-#page-header {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-block: 10px;
 }
 </style>

@@ -18,7 +18,7 @@
             <td>
               <div style="display: flex; justify-content: center">
                 <span>{{ hospital.time }}</span>
-                <StrenghBar :value="hospital.time" range="60" />
+                <StrenghBar :value="Number(hospital.time)" :range="90" />
               </div>
             </td>
             <td>{{ hospital.plus30 }}</td>

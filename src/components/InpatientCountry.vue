@@ -1,8 +1,8 @@
 <template>
   <DashboardWrapper>
     <div id="wrapper">
-      <TableTitle color="deepskyBlue">
-        Inpatient Activity - <strong>Metropolitan</strong>
+      <TableTitle color="orange">
+        Inpatient Activity - <strong>Country</strong>
       </TableTitle>
       <table class="table dashboard-table">
         <thead>
