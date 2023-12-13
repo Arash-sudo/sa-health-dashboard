@@ -1,7 +1,5 @@
 <template>
-  <div id="page-wrapper">
-    <router-view></router-view>
-  </div>
+  <div id="page-wrapper"></div>
 </template>
 
 <script setup></script>
