@@ -1,10 +1,11 @@
 import "./assets/main.css";
+import "leaflet/dist/leaflet.css";
 
 import { createApp } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
 import App from "./App.vue";
 import Dashboard from "./pages/Dashboard.vue";
-import Map from "./pages/Map.vue";
+import Map from "./pages/MapPage.vue";
 
 const routes = [
   { path: "/", name: "Home", component: Dashboard },
