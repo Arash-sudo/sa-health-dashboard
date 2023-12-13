@@ -1,5 +1,5 @@
 <template>
-  <div>this will be a map</div>
+  <!-- <div>this will be a map</div> -->
 
   <div id="page-container">
     <MapView />
