@@ -1,12 +1,12 @@
 <template>
   <div>
     <PageHeader />
-    <div class="update-time">Refreshed at: {{ currentTime }}</div>
+    <div class="update-time">Refreshed at: {{ updateTime }}</div>
 
     <div class="dashboards-container grid-container">
       <Emergency :data="dashboardData.ed" />
       <Ambulance :data="dashboardData.ambo" />
-      <InpatientMetro :data="slicedMetroInpatient" />
+      <InpatientMetro :data="dashboardData.ip.metro.slice(0, 8)" />
       <InpatientCountry :data="dashboardData.ip.country" />
     </div>
   </div>
@@ -16,48 +16,14 @@
 import Emergency from "../components/Emergency.vue";
 import Ambulance from "../components/Ambulance.vue";
 import InpatientMetro from "../components/InpatientMetro.vue";
-import { getCurrentTimeStr } from "../utils/getCurrentTimeStr";
-import { ref, onMounted, onBeforeUnmount, computed } from "vue";
 import InpatientCountry from "../components/InpatientCountry.vue";
 import PageHeader from "../components/PageHeader.vue";
+import { storeToRefs } from "pinia";
 
-const DATA_URL =
-  "https://3hosqj1dol.execute-api.ap-southeast-2.amazonaws.com/default/ambulance";
-const REFRESH_INTERVAL = 60000;
+import { useDashboardStore } from "@/stores/dashboard";
+const dashbordStore = useDashboardStore();
 
-const currentTime = ref(getCurrentTimeStr());
-const dashboardData = ref({
-  ambo: [],
-  ed: [],
-  ip: {
-    metro: [],
-    country: [],
-  },
-  es: [],
-});
-
-const getData = () => {
-  fetch(DATA_URL)
-    .then((res) => res.json())
-    .then((data) => {
-      dashboardData.value = data;
-      currentTime.value = getCurrentTimeStr();
-    });
-};
-
-let intervalId;
-
-onMounted(() => {
-  getData();
-  intervalId = setInterval(getData, REFRESH_INTERVAL);
-});
-
-const slicedMetroInpatient = computed(
-  () => dashboardData.value.ip.metro.slice(0)
-  // use the slice method to make it possible for a shorter list
-);
-
-onBeforeUnmount(() => clearInterval(intervalId));
+const { dashboardData, updateTime } = storeToRefs(dashbordStore);
 </script>
 
 <style scoped>
