@@ -77,31 +77,83 @@ function capacityToStatus(percentage) {
   return "white";
 }
 
-const HOSPITAL_NAMES = {
-  FMC: "Flinders Medical Center",
-  LMH: "Lyell McEwin Hospital",
-  MH: "Modbury Hospital",
-  NHS: "Noarlunga Hospital",
-  RAH: "Royal Adelaide Hospital",
-  TQEH: "The Queen Elizabeth Hospital",
-  WCH: "Women's & Children's Hospital",
-  WCHP: "Women's & Children's Hospital",
-  GLN: "Glenside",
-  JNH: "James Nash House",
-  HAMP: "Hampstead Rehab Centre",
-  RRHS: "Berri Hospital",
-  "Gawler H": "Gawler Health Service",
-  MGDH: "Mt Gambier Health Service",
-  PAHS: "Pt Augusta Hospital",
-  PLHH: "Pt Lincoln Hospital",
-  PPRH: "Pt Pirie Hospital",
-  WHHS: "Whyalla Hospital",
-  HMH: "Helen Mayo House",
-};
+const HOSPITALS = [
+  {
+    id: "01",
+    name: "Flinders Medical Center",
+    shortName: "FMC",
+    type: "METRO",
+  },
+  { id: "02", name: "Lyell McEwin Hospital", shortName: "LMH", type: "METRO" },
+  { id: "03", name: "Modbury Hospital", shortName: "MH", type: "METRO" },
+  { id: "04", name: "Noarlunga Hospital", shortName: "NHS", type: "METRO" },
+  {
+    id: "05",
+    name: "Royal Adelaide Hospital",
+    shortName: "RAH",
+    type: "METRO",
+  },
+  {
+    id: "06",
+    name: "The Queen Elizabeth Hospital",
+    shortName: "TQEH",
+    type: "METRO",
+  },
+  {
+    id: "07",
+    name: "Women's & Children's Hospital",
+    shortName: "WCH",
+    type: "METRO",
+  },
+  {
+    id: "07",
+    name: "Women's & Children's Hospital",
+    shortName: "WCHP",
+    type: "METRO",
+  },
+  { id: "08", name: "Glenside", shortName: "GLN", type: "METRO" },
+  { id: "09", name: "James Nash House", shortName: "JNH", type: "METRO" },
+  {
+    id: "10",
+    name: "Hampstead Rehab Centre",
+    shortName: "HAMP",
+    type: "METRO",
+  },
+  { id: "11", name: "Berri Hospital", shortName: "RRHS", type: "COUNTRY" },
+  {
+    id: "12",
+    name: "Gawler Health Service",
+    shortName: "Gawler H",
+    type: "COUNTRY",
+  },
+  {
+    id: "13",
+    name: "Mt Gambier Health Service",
+    shortName: "MGDH",
+    type: "COUNTRY",
+  },
+  { id: "14", name: "Pt Augusta Hospital", shortName: "PAHS", type: "COUNTRY" },
+  { id: "15", name: "Pt Lincoln Hospital", shortName: "PLHH", type: "COUNTRY" },
+  { id: "16", name: "Pt Pirie Hospital", shortName: "PPRH", type: "COUNTRY" },
+  { id: "17", name: "Whyalla Hospital", shortName: "WHHS", type: "COUNTRY" },
+  { id: "18", name: "Helen Mayo House", shortName: "HMH", type: "METRO" },
+  // ... Add other hospitals as needed
+];
+
+function getHospitalDetails(shortCode) {
+  const hospital = HOSPITALS.find((h) => h.shortName === shortCode);
+  return (
+    hospital || { id: null, name: shortCode, shortName: shortCode, type: null }
+  );
+}
 
 function formatAmbulanceData(data) {
+  const hospitalDetails = getHospitalDetails(data.HOSP_SHORT);
   const formatted = {
-    name: HOSPITAL_NAMES[data.HOSP_SHORT] || data.HOSP_SHORT,
+    id: hospitalDetails.id,
+    name: hospitalDetails.name,
+    shortName: hospitalDetails.shortName,
+    type: hospitalDetails.type,
     number: data.CLR,
     time: data.ACT,
     plus30: data.Plus30Min,
@@ -110,10 +162,14 @@ function formatAmbulanceData(data) {
 }
 
 function formatEmergencyData(data) {
+  const hospitalDetails = getHospitalDetails(data.HOSP_SHORT);
   const totalPatients = Number(data.WTBS) + Number(data.COM_TREAT);
   const formatted = {
+    id: hospitalDetails.id,
+    name: hospitalDetails.name,
+    shortName: hospitalDetails.shortName,
+    type: hospitalDetails.type,
     updated: data.DTM,
-    name: HOSPITAL_NAMES[data.HOSP_SHORT] || data.HOSP_SHORT,
     expecting: data.EA,
     patients: totalPatients,
     waiting: data.WTBS,
@@ -126,8 +182,12 @@ function formatEmergencyData(data) {
 }
 
 function formatIpData(data) {
+  const hospitalDetails = getHospitalDetails(data.HOSP_SHORT);
   return {
-    name: HOSPITAL_NAMES[data.HOSP_SHORT] || data.HOSP_SHORT,
+    id: hospitalDetails.id,
+    name: hospitalDetails.name,
+    shortName: hospitalDetails.shortName,
+    type: hospitalDetails.type,
     generalWard: {
       waiting: data.WFB_GEN,
       admitted: data.OCC_GEN,
