@@ -29,6 +29,8 @@ export const useDashboardStore = defineStore("dashboard", () => {
       return { ambo: [], ed: [], ip: [], es: [] };
 
     return {
+      id: selectedHospitalID.value,
+      name: dashboardData.value.ambo.find(filterHospitalData).name,
       ambo: dashboardData.value.ambo.filter(filterHospitalData),
       ed: dashboardData.value.ed.filter(filterHospitalData),
       ip: dashboardData.value.ip.metro
