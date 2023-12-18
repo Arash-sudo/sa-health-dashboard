@@ -25,15 +25,25 @@ export const useDashboardStore = defineStore("dashboard", () => {
   const selectedHospitalID = ref("01");
 
   const selectedHospitalData = computed(() => {
-    // if (dashboardData.value.length === 0) return {};
-    // return dashboardData.value.find(
-    //   (hospital) => hospital.id === selectedHospitalID.value
-    // );
+    if (dashboardData.value.ambo.length === 0)
+      return { ambo: [], ed: [], ip: [], es: [] };
+
+    return {
+      ambo: dashboardData.value.ambo.filter(filterHospitalData),
+      ed: dashboardData.value.ed.filter(filterHospitalData),
+      ip: dashboardData.value.ip.metro
+        .filter(filterHospitalData)
+        .concat(dashboardData.value.ip.country.filter(filterHospitalData)),
+    };
   });
 
   const selectHospital = (id) => {
     selectedHospitalID.value = id;
   };
+
+  function filterHospitalData(hospital) {
+    return hospital.id === selectedHospitalID.value;
+  }
 
   return {
     dashboardData,
