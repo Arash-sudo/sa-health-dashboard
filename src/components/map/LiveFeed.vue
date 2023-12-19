@@ -1,7 +1,10 @@
 <template>
   <div class="live-feed-unit">
     <div class="live-feed-subtitle">{{ props.title }}</div>
-    <img :src="props.source" width="400" height="266" />
+    <!-- <img :src="props.source" width="400" height="266" /> -->
+    <video width="400" autoplay loop muted>
+      <source :src="props.source" type="video/mp4" />
+    </video>
   </div>
 </template>
 

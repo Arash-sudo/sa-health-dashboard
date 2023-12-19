@@ -39,8 +39,8 @@
     </div>
 
     <div class="live-feed-container">
-      <LiveFeed title="Ambulance Bay" :source="ambulanceBay" />
-      <LiveFeed title="Emergency Reception" :source="emergency" />
+      <LiveFeed title="Ambulance Bay (Sample)" :source="ambulanceBay" />
+      <LiveFeed title="Emergency Reception (Sample)" :source="emergency" />
     </div>
 
     <div class="dashboard-container">
@@ -56,8 +56,8 @@ import { storeToRefs } from "pinia";
 import Emergency from "../Emergency.vue";
 import Ambulance from "../Ambulance.vue";
 import LiveFeed from "./LiveFeed.vue";
-import ambulanceBay from "./assets/ambulance_bay.webp";
-import emergency from "./assets/emergency.avif";
+import ambulanceBay from "./assets/videos/ambulance_feed.mp4";
+import emergency from "./assets/videos/emergency_feed.mp4";
 import logo from "@/assets/images/healux_darkfont.png";
 
 const { selectedHospitalData, isDataReady } = storeToRefs(useDashboardStore());
@@ -69,6 +69,8 @@ const { selectedHospitalData, isDataReady } = storeToRefs(useDashboardStore());
   background-color: #f5f5f5;
   border: 1px solid #ccc;
   border-radius: 10px;
+  height: 100vh;
+  overflow: scroll;
 }
 
 .header {
@@ -95,24 +97,41 @@ const { selectedHospitalData, isDataReady } = storeToRefs(useDashboardStore());
 }
 
 .highlights {
-  margin: 1rem auto;
+  margin: 1rem auto 0;
   padding: 1rem;
   display: grid;
   grid-template-columns: repeat(4, minmax(200px, 1fr));
   gap: 1rem;
-  background-color: #e3f2fd; /* New background color */
+  background-color: #e3f2fd;
   width: 80%;
 }
 
 .highlights > div {
   padding: 0.5rem;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  color: #333; /* Adjusted for readability */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: #333;
+  background-color: #d1eaff;
 }
 
 .highlights > div:nth-last-child(-n + 4) {
-  background-color: #fff3e0; /* Complementary color for alternating rows */
+  background-color: #ffedcc;
+}
+
+.highlights > div:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+}
+
+.live-feed-title {
+  margin-top: 0.5rem;
+  font-size: 1.75rem;
+  font-weight: 500;
+  text-align: center;
+  color: #0056b3; /* Adjust the color to match the branding */
+  /* padding-bottom: 0.5rem; */
+  /* border-bottom: 3px solid #0056b3; */
 }
 
 .live-feed-container,
@@ -120,11 +139,11 @@ const { selectedHospitalData, isDataReady } = storeToRefs(useDashboardStore());
   display: grid;
   grid-template-columns: repeat(2, minmax(300px, 1fr));
   gap: 1rem;
-  margin-top: 1rem;
+  margin: 1rem auto;
+  width: 80%;
 }
 
 .dashboard-container {
-  width: 80%;
   align-items: center;
   display: inline-block;
 }
