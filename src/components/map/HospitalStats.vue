@@ -40,8 +40,8 @@
     </div>
 
     <div class="live-feed-container">
-      <LiveFeed title="Ambulance Bay (Sample)" :source="ambulanceBay" />
-      <LiveFeed title="Emergency Reception (Sample)" :source="emergency" />
+      <LiveFeed title="Ambulance Bay (Sample)" :source="AMBULANCE_FEED" />
+      <LiveFeed title="Emergency Reception (Sample)" :source="EMERGENCY_FEED" />
     </div>
 
     <div class="dashboard-container">
@@ -59,11 +59,13 @@ import Emergency from "../Emergency.vue";
 import Ambulance from "../Ambulance.vue";
 import InpatientMetro from "../InpatientMetro.vue";
 import LiveFeed from "./LiveFeed.vue";
-import ambulanceBay from "./assets/videos/ambulance_feed.mp4";
-import emergency from "./assets/videos/emergency_feed.mp4";
 import logo from "@/assets/images/healux_darkfont.png";
 
 const { selectedHospitalData, isDataReady } = storeToRefs(useDashboardStore());
+const AMBULANCE_FEED =
+  "https://imagefromapi.s3.ap-southeast-2.amazonaws.com/ambulance_feed.mp4";
+const EMERGENCY_FEED =
+  "https://imagefromapi.s3.ap-southeast-2.amazonaws.com/emergency_feed.mp4";
 </script>
 
 <style scoped>
