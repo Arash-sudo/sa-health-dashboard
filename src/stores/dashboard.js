@@ -23,7 +23,7 @@ export const useDashboardStore = defineStore("dashboard", () => {
     updateTime.value = time;
   };
 
-  const selectedHospitalID = ref("01");
+  const selectedHospitalID = ref("05");
 
   const isDataReady = computed(() => dashboardData.value.ambo.length !== 0);
 

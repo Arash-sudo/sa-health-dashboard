@@ -56,7 +56,7 @@ const { selectedHospitalData, isDataReady } = storeToRefs(useDashboardStore());
 <style scoped>
 .container {
   margin: 0.5rem;
-  padding: 2rem;
+  padding-inline: 2rem;
 }
 
 .title {
@@ -85,5 +85,6 @@ const { selectedHospitalData, isDataReady } = storeToRefs(useDashboardStore());
   width: 80%;
   align-items: center;
   display: inline-block;
+  margin-top: 1.5rem;
 }
 </style>
