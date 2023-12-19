@@ -86,6 +86,17 @@ const HOSPITAL_NAMES = {
   TQEH: "The Queen Elizabeth Hospital",
   WCH: "Women's & Children's Hospital",
   WCHP: "Women's & Children's Hospital",
+  GLN: "Glenside",
+  JNH: "James Nash House",
+  HAMP: "Hampstead Rehab Centre",
+  RRHS: "Berri Hospital",
+  "Gawler H": "Gawler Health Service",
+  MGDH: "Mt Gambier Health Service",
+  PAHS: "Pt Augusta Hospital",
+  PLHH: "Pt Lincoln Hospital",
+  PPRH: "Pt Pirie Hospital",
+  WHHS: "Whyalla Hospital",
+  HMH: "Helen Mayo House",
 };
 
 function formatAmbulanceData(data) {
@@ -116,7 +127,7 @@ function formatEmergencyData(data) {
 
 function formatIpData(data) {
   return {
-    name: data.HOSP_LONG.replace("\r", ""),
+    name: HOSPITAL_NAMES[data.HOSP_SHORT] || data.HOSP_SHORT,
     generalWard: {
       waiting: data.WFB_GEN,
       admitted: data.OCC_GEN,

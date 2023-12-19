@@ -1,6 +1,7 @@
 import { getCurrentTimeStr } from "@/utils/getCurrentTimeStr";
 import { defineStore } from "pinia";
 import { ref, computed } from "vue";
+import { HOSPITAL_COORDINATES } from "@/constants";
 
 export const useDashboardStore = defineStore("dashboard", () => {
   const dashboardData = ref({
@@ -22,18 +23,33 @@ export const useDashboardStore = defineStore("dashboard", () => {
     updateTime.value = time;
   };
 
-  const selectedHospitalID = ref("01");
+  const selectedHospitalID = ref("05");
+
+  const isDataReady = computed(() => dashboardData.value.ambo.length !== 0);
 
   const selectedHospitalData = computed(() => {
-    // if (dashboardData.value.length === 0) return {};
-    // return dashboardData.value.find(
-    //   (hospital) => hospital.id === selectedHospitalID.value
-    // );
+    if (dashboardData.value.ambo.length === 0)
+      return { ambo: [], ed: [], ip: [], es: [] };
+
+    return {
+      id: selectedHospitalID.value,
+      name: dashboardData.value.ambo.find(filterHospitalData).name,
+      location: HOSPITAL_COORDINATES.find(filterHospitalData),
+      ambo: dashboardData.value.ambo.filter(filterHospitalData),
+      ed: dashboardData.value.ed.filter(filterHospitalData),
+      ip: dashboardData.value.ip.metro
+        .filter(filterHospitalData)
+        .concat(dashboardData.value.ip.country.filter(filterHospitalData)),
+    };
   });
 
   const selectHospital = (id) => {
     selectedHospitalID.value = id;
   };
+
+  function filterHospitalData(hospital) {
+    return hospital.id === selectedHospitalID.value;
+  }
 
   return {
     dashboardData,
@@ -42,5 +58,7 @@ export const useDashboardStore = defineStore("dashboard", () => {
     selectedHospitalData,
     updateTime,
     setUpdateTime,
+    selectedHospitalID,
+    isDataReady,
   };
 });

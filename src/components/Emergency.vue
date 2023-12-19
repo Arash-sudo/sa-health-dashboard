@@ -13,7 +13,9 @@
           <tr v-for="hospital in data" :key="hospital.name">
             <td>{{ hospital.name }}</td>
             <td>
-              <RippleDot :color="hospital.status" />
+              <div style="display: flex; justify-content: center">
+                <RippleDot :color="hospital.status" />
+              </div>
             </td>
             <td>{{ hospital.capacity }}</td>
             <td>{{ hospital.patients }}</td>

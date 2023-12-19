@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 100vh; width: 800px">
+  <div class="map-container">
     <l-map ref="map" v-model:zoom="zoom" :center="mapCenter">
       <l-tile-layer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -9,7 +9,12 @@
       <l-marker
         v-for="hospital in hospitalCords"
         :lat-lng="hospital.cord"
-        :icon="hospitalIcon"
+        :icon="
+          hospital.id === selectedHospitalID
+            ? selectedHospitalIcon
+            : hospitalIcon
+        "
+        @click="selectHospital(hospital.id)"
       >
         <l-tooltip>{{ hospital.name }}</l-tooltip>
       </l-marker>
@@ -17,7 +22,7 @@
   </div>
 </template>
 
-<script>
+<script setup>
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import {
@@ -27,31 +32,32 @@ import {
   LIcon,
   LTooltip,
 } from "@vue-leaflet/vue-leaflet";
-import { HOSPITAL_CORDINANTS } from "../../constants";
-import hospitalIcon from "./assets/hospital.svg";
+import { HOSPITAL_COORDINATES } from "../../constants";
+import hospitalSvg from "./assets/hospital.svg";
+import { useDashboardStore } from "@/stores/dashboard";
+import { storeToRefs } from "pinia";
 
-export default {
-  components: {
-    LMap,
-    LTileLayer,
-    LMarker,
-    LIcon,
-    LTooltip,
-  },
-  data() {
-    return {
-      zoom: 11,
-      mapCenter: [-34.923118042733655, 138.59988535273698],
-      hospitalCords: HOSPITAL_CORDINANTS,
-      hospitalIcon: L.icon({
-        iconUrl: hospitalIcon,
-        iconSize: [30, 30],
-      }),
-    };
-  },
-  // mounted(){
-  // }
-};
+const CORDS_ADL = [-34.923118042733655, 138.59988535273698];
+const zoom = 11;
+const mapCenter = CORDS_ADL;
+const hospitalCords = HOSPITAL_COORDINATES;
+const hospitalIcon = L.icon({
+  iconUrl: hospitalSvg,
+  iconSize: [30, 30],
+});
+
+const selectedHospitalIcon = L.icon({
+  iconUrl: hospitalSvg,
+  iconSize: [50, 50],
+});
+
+const { selectHospital } = useDashboardStore();
+const { selectedHospitalID } = storeToRefs(useDashboardStore());
 </script>
 
-<style></style>
+<style scoped>
+.map-container {
+  height: 100vh;
+  /* width: 33.3%; */
+}
+</style>
