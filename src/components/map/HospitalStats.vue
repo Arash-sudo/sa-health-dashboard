@@ -1,5 +1,6 @@
 <template>
   <div v-if="!isDataReady">loading</div>
+
   <div class="container" v-if="isDataReady">
     <div class="header">
       <div class="info">
@@ -46,6 +47,7 @@
     <div class="dashboard-container">
       <Ambulance :data="selectedHospitalData.ambo" />
       <Emergency :data="selectedHospitalData.ed" />
+      <InpatientMetro :data="selectedHospitalData.ip" />
     </div>
   </div>
 </template>
@@ -55,6 +57,7 @@ import { useDashboardStore } from "@/stores/dashboard";
 import { storeToRefs } from "pinia";
 import Emergency from "../Emergency.vue";
 import Ambulance from "../Ambulance.vue";
+import InpatientMetro from "../InpatientMetro.vue";
 import LiveFeed from "./LiveFeed.vue";
 import ambulanceBay from "./assets/videos/ambulance_feed.mp4";
 import emergency from "./assets/videos/emergency_feed.mp4";
