@@ -30,7 +30,7 @@ const { dashboardData, updateTime } = storeToRefs(dashbordStore);
 .update-time {
   color: seashell;
   position: absolute;
-  top: 4.7rem;
+  top: 4.8rem;
   left: calc(50% - 7rem);
 }
 
