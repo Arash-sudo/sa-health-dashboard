@@ -59,7 +59,7 @@ import Emergency from "../Emergency.vue";
 import Ambulance from "../Ambulance.vue";
 import InpatientMetro from "../InpatientMetro.vue";
 import LiveFeed from "./LiveFeed.vue";
-import logo from "@/assets/images/healux_darkfont.png";
+import logo from "@/assets/images/Healux-Black.svg";
 
 const { selectedHospitalData, isDataReady } = storeToRefs(useDashboardStore());
 const AMBULANCE_FEED =
