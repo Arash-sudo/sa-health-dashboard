@@ -37,6 +37,5 @@ onBeforeUnmount(() => clearInterval(intervalId));
 #page-wrapper {
   text-align: center;
   background-color: #888;
-  /* height: 100vh; */
 }
 </style>

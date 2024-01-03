@@ -1,0 +1,461 @@
+{
+  "ip": {
+    "metro": [
+      {
+        "id": "08",
+        "name": "Glenside",
+        "shortName": "GLN",
+        "type": "METRO",
+        "generalWard": {
+          "waiting": "0",
+          "admitted": "58",
+          "capacity": "58"
+        },
+        "hospitalStats": {
+          "waiting": "0",
+          "admitted": "58",
+          "capacity": "58"
+        }
+      },
+      {
+        "id": "09",
+        "name": "James Nash House",
+        "shortName": "JNH",
+        "type": "METRO",
+        "generalWard": {
+          "waiting": "0",
+          "admitted": "60",
+          "capacity": "0"
+        },
+        "hospitalStats": {
+          "waiting": "0",
+          "admitted": "60",
+          "capacity": "60"
+        }
+      },
+      {
+        "id": "10",
+        "name": "Hampstead Rehab Centre",
+        "shortName": "HAMP",
+        "type": "METRO",
+        "generalWard": {
+          "waiting": "0",
+          "admitted": "0",
+          "capacity": "100"
+        },
+        "hospitalStats": {
+          "waiting": "0",
+          "admitted": "0",
+          "capacity": "100"
+        }
+      },
+      {
+        "id": "02",
+        "name": "Lyell McEwin Hospital",
+        "shortName": "LMH",
+        "type": "METRO",
+        "generalWard": {
+          "waiting": "21",
+          "admitted": "277",
+          "capacity": "176"
+        },
+        "hospitalStats": {
+          "waiting": "21",
+          "admitted": "428",
+          "capacity": "368"
+        }
+      },
+      {
+        "id": "03",
+        "name": "Modbury Hospital",
+        "shortName": "MH",
+        "type": "METRO",
+        "generalWard": {
+          "waiting": "10",
+          "admitted": "61",
+          "capacity": "56"
+        },
+        "hospitalStats": {
+          "waiting": "6",
+          "admitted": "202",
+          "capacity": "148"
+        }
+      },
+      {
+        "id": "05",
+        "name": "Royal Adelaide Hospital",
+        "shortName": "RAH",
+        "type": "METRO",
+        "generalWard": {
+          "waiting": "33",
+          "admitted": "652",
+          "capacity": "543"
+        },
+        "hospitalStats": {
+          "waiting": "45",
+          "admitted": "735",
+          "capacity": "776"
+        }
+      },
+      {
+        "id": "06",
+        "name": "The Queen Elizabeth Hospital",
+        "shortName": "TQEH",
+        "type": "METRO",
+        "generalWard": {
+          "waiting": "10",
+          "admitted": "196",
+          "capacity": "278"
+        },
+        "hospitalStats": {
+          "waiting": "17",
+          "admitted": "260",
+          "capacity": "343"
+        }
+      },
+      {
+        "id": "18",
+        "name": "Helen Mayo House",
+        "shortName": "HMH",
+        "type": "METRO",
+        "generalWard": {
+          "waiting": "0",
+          "admitted": "0",
+          "capacity": "0"
+        },
+        "hospitalStats": {
+          "waiting": "0",
+          "admitted": "0",
+          "capacity": "6"
+        }
+      },
+      {
+        "id": "07",
+        "name": "Women's & Children's Hospital",
+        "shortName": "WCH",
+        "type": "METRO",
+        "generalWard": {
+          "waiting": "1",
+          "admitted": "105",
+          "capacity": "121"
+        },
+        "hospitalStats": {
+          "waiting": "2",
+          "admitted": "205",
+          "capacity": "219"
+        }
+      },
+      {
+        "id": "01",
+        "name": "Flinders Medical Center",
+        "shortName": "FMC",
+        "type": "METRO",
+        "generalWard": {
+          "waiting": "7",
+          "admitted": "345",
+          "capacity": "359"
+        },
+        "hospitalStats": {
+          "waiting": "16",
+          "admitted": "777",
+          "capacity": "756"
+        }
+      },
+      {
+        "id": "04",
+        "name": "Noarlunga Hospital",
+        "shortName": "NHS",
+        "type": "METRO",
+        "generalWard": {
+          "waiting": "0",
+          "admitted": "37",
+          "capacity": "51"
+        },
+        "hospitalStats": {
+          "waiting": "6",
+          "admitted": "68",
+          "capacity": "104"
+        }
+      }
+    ],
+    "country": [
+      {
+        "id": "11",
+        "name": "Berri Hospital",
+        "shortName": "RRHS",
+        "type": "COUNTRY",
+        "generalWard": {
+          "waiting": "0",
+          "admitted": "0",
+          "capacity": "36"
+        },
+        "hospitalStats": {
+          "waiting": "2",
+          "admitted": "0",
+          "capacity": "42"
+        }
+      },
+      {
+        "id": "12",
+        "name": "Gawler Health Service",
+        "shortName": "Gawler H",
+        "type": "COUNTRY",
+        "generalWard": {
+          "waiting": "0",
+          "admitted": "0",
+          "capacity": "60"
+        },
+        "hospitalStats": {
+          "waiting": "1",
+          "admitted": "0",
+          "capacity": "60"
+        }
+      },
+      {
+        "id": "13",
+        "name": "Mt Gambier Health Service",
+        "shortName": "MGDH",
+        "type": "COUNTRY",
+        "generalWard": {
+          "waiting": "0",
+          "admitted": "0",
+          "capacity": "88"
+        },
+        "hospitalStats": {
+          "waiting": "0",
+          "admitted": "0",
+          "capacity": "120"
+        }
+      },
+      {
+        "id": "14",
+        "name": "Pt Augusta Hospital",
+        "shortName": "PAHS",
+        "type": "COUNTRY",
+        "generalWard": {
+          "waiting": "0",
+          "admitted": "0",
+          "capacity": "46"
+        },
+        "hospitalStats": {
+          "waiting": "0",
+          "admitted": "0",
+          "capacity": "93"
+        }
+      },
+      {
+        "id": "15",
+        "name": "Pt Lincoln Hospital",
+        "shortName": "PLHH",
+        "type": "COUNTRY",
+        "generalWard": {
+          "waiting": "0",
+          "admitted": "0",
+          "capacity": "59"
+        },
+        "hospitalStats": {
+          "waiting": "0",
+          "admitted": "0",
+          "capacity": "59"
+        }
+      },
+      {
+        "id": "16",
+        "name": "Pt Pirie Hospital",
+        "shortName": "PPRH",
+        "type": "COUNTRY",
+        "generalWard": {
+          "waiting": "0",
+          "admitted": "0",
+          "capacity": "52"
+        },
+        "hospitalStats": {
+          "waiting": "0",
+          "admitted": "0",
+          "capacity": "68"
+        }
+      },
+      {
+        "id": "17",
+        "name": "Whyalla Hospital",
+        "shortName": "WHHS",
+        "type": "COUNTRY",
+        "generalWard": {
+          "waiting": "0",
+          "admitted": "0",
+          "capacity": "68"
+        },
+        "hospitalStats": {
+          "waiting": "0",
+          "admitted": "0",
+          "capacity": "112"
+        }
+      }
+    ]
+  },
+  "ambo": [
+    {
+      "id": "01",
+      "name": "Flinders Medical Center",
+      "shortName": "FMC",
+      "type": "METRO",
+      "number": "14",
+      "time": "46",
+      "plus30": "12"
+    },
+    {
+      "id": "02",
+      "name": "Lyell McEwin Hospital",
+      "shortName": "LMH",
+      "type": "METRO",
+      "number": "8",
+      "time": "67",
+      "plus30": "10"
+    },
+    {
+      "id": "03",
+      "name": "Modbury Hospital",
+      "shortName": "MH",
+      "type": "METRO",
+      "number": "11",
+      "time": "46",
+      "plus30": "8"
+    },
+    {
+      "id": "04",
+      "name": "Noarlunga Hospital",
+      "shortName": "NHS",
+      "type": "METRO",
+      "number": "2",
+      "time": "75",
+      "plus30": "3"
+    },
+    {
+      "id": "05",
+      "name": "Royal Adelaide Hospital",
+      "shortName": "RAH",
+      "type": "METRO",
+      "number": "21",
+      "time": "49",
+      "plus30": "26"
+    },
+    {
+      "id": "06",
+      "name": "The Queen Elizabeth Hospital",
+      "shortName": "TQEH",
+      "type": "METRO",
+      "number": "10",
+      "time": "58",
+      "plus30": "12"
+    },
+    {
+      "id": "07",
+      "name": "Women's & Children's Hospital",
+      "shortName": "WCHP",
+      "type": "METRO",
+      "number": "2",
+      "time": "30",
+      "plus30": "1"
+    }
+  ],
+  "ed": [
+    {
+      "id": "01",
+      "name": "Flinders Medical Center",
+      "shortName": "FMC",
+      "type": "METRO",
+      "updated": "2024-01-02T14:30:00",
+      "expecting": "7",
+      "patients": 76,
+      "waiting": "26",
+      "treated": "50",
+      "capacity": "59",
+      "waitTime": "149.40",
+      "status": "white"
+    },
+    {
+      "id": "02",
+      "name": "Lyell McEwin Hospital",
+      "shortName": "LMH",
+      "type": "METRO",
+      "updated": "2024-01-02T14:30:00",
+      "expecting": "8",
+      "patients": 62,
+      "waiting": "12",
+      "treated": "50",
+      "capacity": "59",
+      "waitTime": "60.68",
+      "status": "red"
+    },
+    {
+      "id": "03",
+      "name": "Modbury Hospital",
+      "shortName": "MH",
+      "type": "METRO",
+      "updated": "2024-01-02T14:30:00",
+      "expecting": "2",
+      "patients": 46,
+      "waiting": "7",
+      "treated": "39",
+      "capacity": "36",
+      "waitTime": "74.89",
+      "status": "white"
+    },
+    {
+      "id": "04",
+      "name": "Noarlunga Hospital",
+      "shortName": "NHS",
+      "type": "METRO",
+      "updated": "2024-01-02T14:30:00",
+      "expecting": "2",
+      "patients": 46,
+      "waiting": "23",
+      "treated": "23",
+      "capacity": "26",
+      "waitTime": "152.63",
+      "status": "white"
+    },
+    {
+      "id": "05",
+      "name": "Royal Adelaide Hospital",
+      "shortName": "RAH",
+      "type": "METRO",
+      "updated": "2024-01-02T14:30:00",
+      "expecting": "10",
+      "patients": 106,
+      "waiting": "28",
+      "treated": "78",
+      "capacity": "69",
+      "waitTime": "102.07",
+      "status": "white"
+    },
+    {
+      "id": "06",
+      "name": "The Queen Elizabeth Hospital",
+      "shortName": "TQEH",
+      "type": "METRO",
+      "updated": "2024-01-02T14:30:00",
+      "expecting": "3",
+      "patients": 46,
+      "waiting": "7",
+      "treated": "39",
+      "capacity": "29",
+      "waitTime": "75.00",
+      "status": "white"
+    },
+    {
+      "id": "07",
+      "name": "Women's & Children's Hospital",
+      "shortName": "WCH",
+      "type": "METRO",
+      "updated": "2024-01-02T14:30:00",
+      "expecting": "0",
+      "patients": 37,
+      "waiting": "13",
+      "treated": "24",
+      "capacity": "35",
+      "waitTime": "44.33",
+      "status": "red"
+    }
+  ]
+}
