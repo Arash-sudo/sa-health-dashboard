@@ -12,7 +12,9 @@
         <div>Coordinates: {{ selectedHospitalData.location.cord }}</div>
       </div>
       <img :src="logo" alt="healux logo" class="logo" />
-    </div>
+      <a href="../">Back to Dashboards</a>
+
+   </div>
 
     <div class="highlights">
       <div>Emergency Capacity:</div>
