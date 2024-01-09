@@ -46,4 +46,13 @@ const { dashboardData, updateTime } = storeToRefs(dashbordStore);
   grid-template-columns: 1fr 1fr;
   width: auto;
 }
+@media screen and (max-width: 800px) {
+  .dashboards-container {
+    display: block; /* Change to block layout for small screens */
+  }
+
+  .grid-container {
+    grid-template-columns: 1fr; /* Show only one column for small screens */
+  }
+  }
 </style>
