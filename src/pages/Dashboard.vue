@@ -2,7 +2,7 @@
   <div>
     <PageHeader />
     <div class="update-time">Refreshed at: {{ updateTime }}</div>
-
+    <a href="/map">Map View</a>
     <div class="dashboards-container grid-container">
       <Emergency :data="dashboardData.ed" />
       <Ambulance :data="dashboardData.ambo" />
