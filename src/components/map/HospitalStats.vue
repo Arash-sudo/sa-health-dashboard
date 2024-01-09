@@ -143,9 +143,15 @@ const EMERGENCY_FEED =
 .dashboard-container {
   display: grid;
   grid-template-columns: repeat(2, minmax(300px, 1fr));
-  gap: 1rem;
+  gap: 0;
   margin: 1rem auto;
   width: 80%;
+}
+@media screen and (max-width: 600px) {
+.live-feed-container,
+.dashboard-container {
+  display: block;
+  }
 }
 
 .dashboard-container {
