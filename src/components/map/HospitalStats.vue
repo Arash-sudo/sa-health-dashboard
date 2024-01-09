@@ -150,7 +150,7 @@ const EMERGENCY_FEED =
 @media screen and (max-width: 600px) {
 .live-feed-container,
 .dashboard-container {
-  display: block;
+  display: block; /* Change to block layout for small screens */
   }
 }
 
