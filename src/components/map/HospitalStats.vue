@@ -147,7 +147,7 @@ const EMERGENCY_FEED =
   margin: 1rem auto;
   width: 80%;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
 .live-feed-container,
 .dashboard-container {
   display: block; /* Change to block layout for small screens */
