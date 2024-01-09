@@ -2,7 +2,7 @@
   <div class="live-feed-unit">
     <div class="live-feed-subtitle">{{ props.title }}</div>
     <!-- <img :src="props.source" width="400" height="266" /> -->
-    <video width="80%" autoplay loop muted>
+    <video width="100%" autoplay loop muted>
       <source :src="props.source" type="video/mp4" />
     </video>
   </div>
