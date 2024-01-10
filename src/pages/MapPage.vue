@@ -15,6 +15,7 @@ import HospitalStats from "@/components/map/HospitalStats.vue";
 <style>
 #page-container {
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 3fr;
 }
+
 </style>
