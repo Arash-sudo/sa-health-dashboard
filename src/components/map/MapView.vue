@@ -27,6 +27,8 @@
         :icon="ambulanceIcon"
       >
       </l-marker>
+ <!-- Add a container for the routing control -->
+      <div ref="routingControlContainer"></div>
     </l-map>
   </div>
 </template>
@@ -55,21 +57,32 @@ import { generateInitCords } from "@/utils/generateInitCords";
 const getRoute = async (startPoint, destinationPoint) => {
   // Create a promise for asynchronous operations
   return new Promise((resolve, reject) => {
-    // Use leaflet-routing-machine to get a route
-    L.Routing.control({
+    // Create a separate instance of the routing control
+    const routingControl = L.Routing.control({
       waypoints: [
         L.latLng(startPoint[0], startPoint[1]),
         L.latLng(destinationPoint[0], destinationPoint[1]),
-      ],
-    }).on('routesfound', function (e) {
+         ],
+      show: false, // Set show option to false to prevent immediate display
+     createMarker: () => null, // Function to create markers (returning null creates no markers)
+        }).addTo(mapRef.value);
+    
+  // Listen for the 'routesfound' event
+    routingControl.on("routesfound", function (e) {
       const route = e.routes[0].coordinates;
       resolve(route);
-    }).on('routingerror', function (e) {
+      // Remove the routing control in case of success
+      routingControl.removeFrom(mapRef.value);
+    });
+
+    // Listen for the 'routingerror' event
+    routingControl.on("routingerror", function (e) {
       reject(e.error);
-    }).addTo(mapRef.value);
+      // Remove the routing control in case of an error
+      routingControl.removeFrom(mapRef.value);
+    });
   });
 };
-
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 const CORDS_ADL = [-34.923118042733655, 138.59988535273698];
@@ -149,4 +162,14 @@ if (selectedHospital) {
   height: 100vh;
   /* width: 33.3%; */
 }
+/* Hide the routing control collapse button */
+::v-deep .leaflet-routing-container .leaflet-routing-collapse-btn {
+  display: none;
+}
+
+/* Hide the entire routing container */
+::v-deep .leaflet-routing-container {
+  display: none;
+}
 </style>
+
